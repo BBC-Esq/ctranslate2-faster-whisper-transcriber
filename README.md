@@ -1,4 +1,4 @@
-# Record Audio Using Ctranslate2 and Faster-Whisper!
+# Record and Transcribe Audio Using Ctranslate2 and Faster-Whisper!
 Record audio and save a transcription to your system's clipboard with ctranslate2 and faster-whisper.
 
 ## Installation
