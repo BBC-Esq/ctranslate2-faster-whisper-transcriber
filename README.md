@@ -20,6 +20,16 @@ Run the program!
 ```
 python main.py
 ```
+> Please note!  You can change the size/quality of the model used by changing ```line 17``` of ```main.py``` from ```large-v2``` to any of the following:
+
+>  * ```tiny```
+>  * ```tiny.en```
+>  * ```base```
+>  * ```base.en```
+>  * ```small```
+>  * ```small.en```
+>  * ```medium```
+>  * ```medium.en```
 
 ## That's it!  The model will download to cache the first time you use the program.
 
