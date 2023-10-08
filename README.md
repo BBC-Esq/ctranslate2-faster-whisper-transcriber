@@ -33,4 +33,4 @@ python main.py
 
 ## That's it!  The model will download to cache the first time you use the program.
 
-Now just use ```control + v``` after the transcription is saved to the clipboard to paste the transcription anywhere you want, like the chat box for your LLM!
+Now just use ```control + v``` or right click "paste" after the transcription is saved to the clipboard; for example, into the chat box for your LLM!
