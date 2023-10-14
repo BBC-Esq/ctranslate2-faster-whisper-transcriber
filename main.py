@@ -15,7 +15,7 @@ class VoiceRecorder:
         self.window = window
         self.is_recording, self.frames = False, []
         self.model = WhisperModel("base.en", device="auto", compute_type="float16", cpu_threads=8)
-        # "audio" uses CUDA or CPU, whichever is available.  The "cpu-threads" argument is only used if "cpu" is chosen.
+        # "auto" uses CUDA or CPU, the best one available.  The "cpu-threads" argument is only used if "cpu" is chosen.
         # You can explicitly specivy "CPU" or "CUDA" if you want.  Note, AMD GPU's are not supported, unfortunately, but
         # the faster-whisper library still has AMD CPU acceleration built in.
 
