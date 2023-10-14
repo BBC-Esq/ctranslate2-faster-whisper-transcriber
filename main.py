@@ -14,10 +14,46 @@ class VoiceRecorder:
         self.format, self.channels, self.rate, self.chunk = format, channels, rate, chunk
         self.window = window
         self.is_recording, self.frames = False, []
-        self.model = WhisperModel("base.en", device="auto", compute_type="float16", cpu_threads=8)
-        # "auto" uses CUDA or CPU, the best one available.  The "cpu-threads" argument is only used if "cpu" is chosen.
-        # You can explicitly specivy "CPU" or "CUDA" if you want.  Note, AMD GPU's are not supported, unfortunately, but
-        # the faster-whisper library still has AMD CPU acceleration built in.
+        self.model = WhisperModel("ctranslate2-4you/whisper-base.en-ct2-float32", device="auto", compute_type="float32", cpu_threads=8)
+    
+    """
+    
+    NOTES:
+    
+    "auto" - uses CUDA if available or falls back to CPU.  You can specify "CUDA" or "CPU" if you want.  Unfortunately, Ctranslate2 doesn't
+    support AMD GPU acceleration currently, although it does support acceleration on AMD CPUs.
+    
+    "cpu-threads" - specifies the number of cpu threads to use when CPU is used (not CUDA). It is OK to keep this even if you use CUDA
+    because it will be simply be disregarded.  Always leave at least 2-4 threads available for background tasks.
+    
+    To change the size of the model, change "base.en" to/from any of the following:
+
+    tiny
+    tiny.en
+    base
+    base.en
+    small
+    small.en
+    medium
+    medium.en
+    large-v2
+
+    To change the quantization of the model, change "float32" in TWO places.  For example:
+
+    self.model = WhisperModel("ctranslate2-4you/whisper-tiny.en-ct2-float16", device="auto", compute_type="float16", cpu_threads=8)
+
+    For CPU usage, I strongly recommend only using "float32" or "int8_float32" (if you need to save some VRAM).
+    For CUDA usage, you have more flexibility.  My recommendations are:
+
+    bfloat16 (only supported by NVIDIA RTX 4060 and up)
+    float16 (only supported by NVIDIA GTX 1650 and up)
+    int8_float32 (to save VRAM...supported by NVIDIA GTX 1650 and up)
+    float32 (you must use float32 for NVIDIA GPUs prior to GTX 1650)
+
+    Ctranslate2 will change the quantization at runtime if you don't use specify a compatible quant, but this adds overhead and
+    will harm performance.
+    
+    """
 
     def transcribe_audio(self, audio_file):
         segments, _ = self.model.transcribe(audio_file)
