@@ -32,6 +32,8 @@ python main.py
 >  * ```medium.en```
 >  * ```large-v2```
 
-## That's it!  The model will download to cache the first time you use the program.
+### See more detailed instructions within the ```main.py``` script itself.
+
+### That's it!  The model will download to cache the first time you use the program.
 
 Now just use ```control + v``` or right click "paste" after the transcription is saved to the clipboard; for example, into the chat box for your LLM!
