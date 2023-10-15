@@ -4,7 +4,7 @@ Record audio and save a transcription to your system's clipboard with ctranslate
 ## Installation
 Download the latest release and save to disk.
 > If you intend to use CUDA acceleration instead of CPU you must also install [CUDA 11.8](https://developer.nvidia.com/cuda-11-8-0-download-archive) prior to the next steps.
-  > * Unfortuantely, Ctranslate2 does not currentlly support AMD GPU acceleration, but it does support AMD CPUs.
+  > * Unfortuantely, Ctranslate2 does not currentlly support gpu-acceleration on AMD GPUs or Apple's metal/mps.  However, CPU acceleration will still kick in.
 
 Within the folder saved, create a command prompt and create a virtual environment:
 ```
@@ -14,7 +14,8 @@ Activate the virtual environment:
 ```
 .\Scripts\activate
 ```
-ONLY use the following command if you intend to use CUDA acceleration and already installed CUDA 11.8 above:
+ONLY use the following command if you have an Nvidia GPU:
+> Don't forget to install CUDA 11.8 first.
 ```
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 ```
