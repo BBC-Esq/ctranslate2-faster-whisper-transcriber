@@ -1,7 +1,7 @@
 # Record and Transcribe Audio Using Ctranslate2!
 Record audio and save a transcription to your system's clipboard with ctranslate2 and faster-whisper.
 
-## No Installation Usage
+## Using with No Installation Approach
 There are two executables in the [latest release](https://github.com/BBC-Esq/ctranslate2-faster-whisper-transcriber/releases/tag/v1.1) no installation needed.  Linux users will need to follow [these additional instructions]([https://github.com/BBC-Esq/ctranslate2-faster-whisper-transcriber/blob/main/linux_instructions.png](https://github.com/BBC-Esq/ctranslate2-faster-whisper-transcriber/blob/main/linux_instructions.png?raw=true)).
 
 ## Installation Instructions
