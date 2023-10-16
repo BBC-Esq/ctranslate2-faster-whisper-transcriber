@@ -16,7 +16,7 @@ Within the folder containing ```main.py```, create a command prompt and create a
 ```
 python -m venv .
 ```
-  > NOTE: For any ```python``` commands in these instructions, if you installed Python 3 but still have Python 2 installed, you should use ```Python3``` when running the commands.
+  > NOTE: For any ```python``` commands in these instructions, if you installed Python 3 but still have Python 2 installed, you should use ```Python3``` when running the commands to make sure that the correct version of Python is used.
 
 Activate the virtual environment:
 ```
