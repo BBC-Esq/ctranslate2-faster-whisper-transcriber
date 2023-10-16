@@ -23,11 +23,17 @@ Install additional requirements:
 ```
 pip install -r requirements.txt
 ```
-Run the program!
+
+## Usage
+Within the virtual environment run this command:
 ```
 python main.py
 ```
-> Please note!  You can change the size/quality of the model used by changing ```line 17``` of ```main.py``` to/from any of the following:
+The model will download to cache the first time you use the program.
+Now just use ```control + v``` or right click "paste" after the transcription is saved to the clipboard; for example, into the chat box for your LLM!
+
+## Changing Model Size or Quantization
+You can change the size/quantization of the model used by changing ```line 17``` of ```main.py``` to/from any of the following:
 
 >  * ```tiny```
 >  * ```tiny.en```
@@ -39,8 +45,6 @@ python main.py
 >  * ```medium.en```
 >  * ```large-v2```
 
-### See more detailed instructions within the ```main.py``` script itself.
+Look within ```main.py``` for more detailed instructions.
 
-### That's it!  The model will download to cache the first time you use the program.
-
-Now just use ```control + v``` or right click "paste" after the transcription is saved to the clipboard; for example, into the chat box for your LLM!
+### Feel free to contact me on here or at bbc@chintellalaw.com.  Any suggestions (positive or negative) are welcome.
