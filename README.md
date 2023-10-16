@@ -19,6 +19,10 @@ ONLY use the following command if you have an Nvidia GPU:
 ```
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 ```
+Upgrad Pip
+```
+python -m pip install --upgrade pip
+```
 Install additional requirements:
 ```
 pip install -r requirements.txt
