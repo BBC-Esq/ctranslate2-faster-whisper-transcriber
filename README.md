@@ -1,10 +1,10 @@
 # Record and Transcribe Audio Using Ctranslate2!
 Record audio and save a transcription to your system's clipboard with ctranslate2 and faster-whisper.
 
-## Using Single-File Executables
+## No Installation Usage
 There are two executables in the [latest release](https://github.com/BBC-Esq/ctranslate2-faster-whisper-transcriber/releases/tag/v1.1) no installation needed.  Linux users will need to follow [these additional instructions]([https://github.com/BBC-Esq/ctranslate2-faster-whisper-transcriber/blob/main/linux_instructions.png](https://github.com/BBC-Esq/ctranslate2-faster-whisper-transcriber/blob/main/linux_instructions.png?raw=true)).
 
-## Installing and Using Scripts
+## Installation Instructions
 > Make sure have at least [Python 3.10+](https://www.python.org/downloads/release/python-31011/).
 > You must have both [Git](https://git-scm.com/downloads) and [git-lfs](https://git-lfs.com/) installed.<br>
 > If you intend to use CUDA acceleration, you must also install [CUDA 11.8](https://developer.nvidia.com/cuda-11-8-0-download-archive).
