@@ -10,7 +10,7 @@ There are two executables in the [latest release](https://github.com/BBC-Esq/ctr
 > If you intend to use CUDA acceleration, you must also install [CUDA 11.8](https://developer.nvidia.com/cuda-11-8-0-download-archive).
   > * Unfortuantely, Ctranslate2 does not currentlly support gpu-acceleration on AMD GPUs or Apple's metal/mps.  However, CPU acceleration still works.
 
-Step1 - Download the latest releaze ZIP file, extract to a folder.
+Step1 - Download the latest release ZIP file and extract to a folder.
 
 Step2 - Within the folder containing ```main.py```, create a command prompt and create a virtual environment by running:
 ```
