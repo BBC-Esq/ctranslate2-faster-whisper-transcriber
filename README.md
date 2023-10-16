@@ -1,30 +1,39 @@
 # Record and Transcribe Audio Using Ctranslate2!
 Record audio and save a transcription to your system's clipboard with ctranslate2 and faster-whisper.
 
-## Installation
+## Using Single-File Executables
 There are two executables in the [latest release](https://github.com/BBC-Esq/ctranslate2-faster-whisper-transcriber/releases/tag/v1.1) no installation needed.  Linux users will need to follow [these additional instructions](https://github.com/BBC-Esq/ctranslate2-faster-whisper-transcriber/blob/main/linux_instructions.png).
 
-If you don't want the .exe/.deb so you can choose different models/quantizations, follow these instructions:
-> NOTE: If you intend to use CUDA acceleration instead of CPU you must first install [CUDA 11.8](https://developer.nvidia.com/cuda-11-8-0-download-archive).
+## Installing and Using Scripts
+> Make sure have at least [Python 3.10+](https://www.python.org/downloads/release/python-31011/).
+> You must have both [Git](https://git-scm.com/downloads) and [git-lfs](https://git-lfs.com/) installed.<br>
+> If you intend to use CUDA acceleration, you must also install [CUDA 11.8](https://developer.nvidia.com/cuda-11-8-0-download-archive).
   > * Unfortuantely, Ctranslate2 does not currentlly support gpu-acceleration on AMD GPUs or Apple's metal/mps.  However, CPU acceleration still works.
 
-Within the folder saved, create a command prompt and create a virtual environment:
+Download the latest releaze ZIP file, extract to a folder.
+
+Within the folder containing ```main.py```, create a command prompt and create a virtual environment by running:
 ```
 python -m venv .
 ```
+  > NOTE: For any ```python``` commands in these instructions, if you installed Python 3 but still have Python 2 installed, you should use ```Python3``` when running the commands.
+
 Activate the virtual environment:
 ```
 .\Scripts\activate
 ```
+  > On linux run: ```source bin/activate```
+
 Upgrad Pip
 ```
 python -m pip install --upgrade pip
 ```
-ONLY use the following command if you have an Nvidia GPU:
-> Don't forget to install CUDA 11.8 first.
+
+If you want to use CUDA acceleration run:
 ```
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 ```
+
 Install additional requirements:
 ```
 pip install -r requirements.txt
@@ -37,6 +46,7 @@ python main.py
 ```
 The model will download to cache the first time you use the program.
 Now just use ```control + v``` or right click "paste" after the transcription is saved to the clipboard; for example, into the chat box for your LLM!
+Remember, anytime you want to restart the program make sure and activate the virtual environment first!
 
 ## Changing Model Size or Quantization
 You can change the size/quantization of the model used by changing ```line 17``` of ```main.py``` to/from any of the following:
