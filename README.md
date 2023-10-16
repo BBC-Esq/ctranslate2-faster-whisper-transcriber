@@ -14,14 +14,14 @@ Activate the virtual environment:
 ```
 .\Scripts\activate
 ```
+Upgrad Pip
+```
+python -m pip install --upgrade pip
+```
 ONLY use the following command if you have an Nvidia GPU:
 > Don't forget to install CUDA 11.8 first.
 ```
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
-```
-Upgrad Pip
-```
-python -m pip install --upgrade pip
 ```
 Install additional requirements:
 ```
