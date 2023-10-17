@@ -22,7 +22,7 @@ Step 3 - Activate the virtual environment:
 ```
 .\Scripts\activate
 ```
-  > On Linux run: ```source bin/activate```
+  > ‼️On Linux run: ```source bin/activate```
 
 Step 4 - Upgrade Pip
 ```
