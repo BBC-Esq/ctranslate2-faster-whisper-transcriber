@@ -10,9 +10,9 @@ Windows users can use the two executables in the [latest release](https://github
 > If you intend to use CUDA acceleration, you must also install [CUDA 11.8](https://developer.nvidia.com/cuda-11-8-0-download-archive).
   > * Unfortunately, Ctranslate2 does not currently support GPU-acceleration on AMD GPUs or Apple's Metal/MPS. However, CPU acceleration still works.
 
-Step 1 - Download the latest release ZIP file and extract it to a folder.
+Step 1 - Download the latest release, unzip, and place ```main.py``` and ```requirements.txt``` in any folder.
 
-Step 2 - Within the folder containing ```main.py```, create a command prompt and create a virtual environment by running:
+Step 2 - Navigate to the folder, create a command prompt, and create a virtual environment:
 ```
 python -m venv .
 ```
