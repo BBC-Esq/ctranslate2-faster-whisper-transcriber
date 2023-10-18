@@ -2,7 +2,8 @@
 Record audio and save a transcription to your system's clipboard with ctranslate2 and faster-whisper.
 
 ## Using with No Installation Approach
-Windows users can use the two executables in the [latest release](https://github.com/BBC-Esq/ctranslate2-faster-whisper-transcriber/releases/tag/v1.1) no installation needed.  Linux users can try to follow [these additional instructions](https://github.com/BBC-Esq/ctranslate2-faster-whisper-transcriber/blob/main/linux_instructions.png) but I haven't been able to verify on my system.  NOTE: Linux users will still need to follow Step 6 and install ```portaudio19-dev``` and ```python3-dev```, and MacOS users will still need to insltall ```portaudio``` .
+Windows users can use the two executables in the [latest release](https://github.com/BBC-Esq/ctranslate2-faster-whisper-transcriber/releases/tag/v1.1) no installation needed.  Linux users can try to follow [these additional instructions](https://github.com/BBC-Esq/ctranslate2-faster-whisper-transcriber/blob/main/linux_instructions.png) but I haven't been able to verify on my system.<br>
+‼️NOTE: Linux users will still need to follow Step 6 and install ```portaudio19-dev``` and ```python3-dev```, and MacOS users will still need to insltall ```portaudio``` .
 
 ## Installation Instructions
 > Make sure you have at least [Python 3.10+](https://www.python.org/downloads/release/python-31011/).
