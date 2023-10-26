@@ -1,23 +1,21 @@
 # Record and Transcribe Audio Using Ctranslate2!
-Record audio and save a transcription to your system's clipboard with ctranslate2 and faster-whisper.
+### Record audio and save a transcription to your system's clipboard with ctranslate2 and faster-whisper.
 
-## Using with No Installation Approach
-Windows users can use the two executables in the [latest release](https://github.com/BBC-Esq/ctranslate2-faster-whisper-transcriber/releases/tag/v1.1) no installation needed.  Linux users can try to follow [these additional instructions](https://github.com/BBC-Esq/ctranslate2-faster-whisper-transcriber/blob/main/linux_instructions.png) but I haven't been able to verify on my system.<br>
-‼️NOTE: Linux users will still need to follow Step 6 and install ```portaudio19-dev``` and ```python3-dev```, and MacOS users will still need to insltall ```portaudio``` .
-
-## Installation Instructions
-> Make sure you have at least [Python 3.10+](https://www.python.org/downloads/release/python-31011/).
+## Prerequisites
+> Tested on [Python 3.10.11](https://www.python.org/downloads/release/python-31011/).
 > You must have both [Git](https://git-scm.com/downloads) and [git-lfs](https://git-lfs.com/) installed.<br>
 > If you intend to use CUDA acceleration, you must also install [CUDA 11.8](https://developer.nvidia.com/cuda-11-8-0-download-archive).
   > * Unfortunately, Ctranslate2 does not currently support GPU-acceleration on AMD GPUs or Apple's Metal/MPS. However, CPU acceleration still works.
 
-Step 1 - Download the latest release, unzip, and place ```main.py``` and ```requirements.txt``` in any folder.
+## Installation
 
-Step 2 - Navigate to the folder, create a command prompt, and create a virtual environment:
+Step 1 - Download the latest release and unzip the files to your chosen directory.
+
+Step 2 - Navigate to the folder with ```ct2_main.py``` in it, open a command prompt, and create a virtual environment:
 ```
 python -m venv .
 ```
-  > NOTE: For any ```python``` or ```pip``` commands in these instructions, if you installed Python 3 but still have Python 2 installed, you should use ```Python3``` or ```pip3``` instead to make sure that the correct version of Python is used.
+  > NOTE: For any ```python``` or ```pip``` commands in these instructions, if you still have Python 2 installed, make sure and run ```python3``` and ```pip3``` instead to make sure the correct Python interpreter is used.
 
 Step 3 - Activate the virtual environment:
 ```
@@ -46,25 +44,12 @@ pip install -r requirements.txt
 ## Usage
 Within the virtual environment run this command:
 ```
-python main.py
+python ct2_main.py
 ```
-The model will download to cache the first time you use the program.
+The first time using the program, I recommend using the default settings and clicking "Update Settings" button to download the model.  After that, simply change the settings and click "Update Settings" for them to take effect.<br><br>
 Now just use ```control + v``` or right click "paste" after the transcription is saved to the clipboard; for example, into the chat box for your LLM!
 Remember, anytime you want to restart the program, make sure to activate the virtual environment first!
 
-## Changing Model Size or Quantization
-You can change the size/quantization of the model used by changing ```line 17``` of ```main.py``` to/from any of the following:
-
->  * ```tiny```
->  * ```tiny.en```
->  * ```base```
->  * ```base.en```
->  * ```small```
->  * ```small.en```
->  * ```medium```
->  * ```medium.en```
->  * ```large-v2```
-
-Look within ```main.py``` for more detailed instructions.
+## Contact
 
 ### Feel free to contact me on here or at bbc@chintellalaw.com.  Any suggestions (positive or negative) are welcome.
