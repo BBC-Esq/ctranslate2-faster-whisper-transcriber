@@ -4,7 +4,7 @@ from ct2_logic import VoiceRecorder
 import yaml
 
 class MyWindow(QWidget):
-    def __init__(self, cuda_available=False):  # Add cuda_available parameter
+    def __init__(self, cuda_available=False):
         super().__init__()
 
         layout = QVBoxLayout(self)

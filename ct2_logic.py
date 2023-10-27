@@ -18,17 +18,16 @@ class VoiceRecorder:
         try:
             with open("config.yaml", "r") as f:
                 config = yaml.safe_load(f)
-                # Check if essential entries are missing and recreate them if necessary
                 if "device_type" not in config:
-                    config["device_type"] = "cpu"  # You can set the default device type here
+                    config["device_type"] = "cpu"
                 if "model_name" not in config:
-                    config["model_name"] = "base.en"  # You can set the default model name here
+                    config["model_name"] = "base.en"
                 if "quantization_type" not in config:
-                    config["quantization_type"] = "int8"  # You can set the default quantization type here
+                    config["quantization_type"] = "int8"
 
                 self.update_model(config["model_name"], config["quantization_type"], config["device_type"])
         except FileNotFoundError:
-            self.update_model("base.en", "int8", "cpu")  # Set default values if config file doesn't exist
+            self.update_model("base.en", "int8", "cpu")
 
     def save_settings(self, model_name, quantization_type, device_type):
         try:
