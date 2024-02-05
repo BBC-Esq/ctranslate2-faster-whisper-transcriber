@@ -2,7 +2,7 @@
 ### Record audio and save a transcription to your system's clipboard with ctranslate2 and faster-whisper.
 
 ## Prerequisites
-### Tested on [Python 3.10.11](https://www.python.org/downloads/release/python-31011/).
+### Tested onPython 3.10 and 3.11.
 ### You must have both [Git](https://git-scm.com/downloads) and [git-lfs](https://git-lfs.com/) installed.
 ### If you intend to use CUDA acceleration, you must also install [CUDA 11.8](https://developer.nvidia.com/cuda-11-8-0-download-archive).
 * Unfortunately, Ctranslate2 does not currently support GPU-acceleration on AMD GPUs or Apple's Metal/MPS. However, CPU acceleration still works for Intel, AMD, and Apple CPUs.
