@@ -38,39 +38,20 @@ brew install portaudio
 ```
 pip3 install -r requirements.txt
 ```
+* [Go here](https://github.com/SYSTRAN/faster-whisper) for instructions on how to install cublas/cudnn and any other dependencies specifically required by ```faster-whisper```.
 ## Install Hardware-Specific Libraries
-* Nvidia GPU (using CUDA 11.8)
-```
-pip3 install torch==2.1.2 torchvision==0.16.2 torchaudio==2.1.2 --index-url https://download.pytorch.org/whl/cu118
-```
+* Nvidia GPU using CUDA 11.8 (linux or windows)
 ```
 pip3 install https://files.pythonhosted.org/packages/ff/11/401db7f4bfdcec3c4bd685297c2fb11a3caa0a0fa3288bd209f973b877bb/faster_whisper-0.9.0-py3-none-any.whl
 ```
-* Nvidia GPU (using CUDA 12.1+)
-```
-pip3 install pip install torch==2.1.2 torchvision==0.16.2 torchaudio==2.1.2 --index-url https://download.pytorch.org/whl/cu121
-```
+* Nvidia GPU using CUDA 12.1+ (linux or windows)
 ```
 pip3 install pip install faster-whisper==1.0.0
 ```
-* AMD GPU (rocM 5.6 on Linux)
+* AMD and MacOS systems
 ```
-pip3 install pip install torch==2.1.2 torchvision==0.16.2 torchaudio==2.1.2 --index-url https://download.pytorch.org/whl/rocm5.6
+pip3 install pip install faster-whisper==1.0.0
 ```
-```
-pip3 install pip3 install https://files.pythonhosted.org/packages/ff/11/401db7f4bfdcec3c4bd685297c2fb11a3caa0a0fa3288bd209f973b877bb/faster_whisper-0.9.0-py3-none-any.whl
-```
-* AMD GPU (on windows)
-  * Not supported by Pytorch.  Install CPU version of Pytorch.
-* MacOS
-```
-pip3 install torch==2.1.2 torchvision==0.16.2 torchaudio==2.1.2
-```
-* CPU Only
-```
-pip3 install pip install torch==2.1.2 torchvision==0.16.2 torchaudio==2.1.2 --index-url https://download.pytorch.org/whl/cpu
-```
-
 # Usage
 Within the virtual environment run this command:
 ```
