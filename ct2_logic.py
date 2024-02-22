@@ -3,9 +3,10 @@ import wave
 import os
 import tempfile
 import threading
-import pyperclip
 from faster_whisper import WhisperModel
 import yaml
+from PySide6.QtWidgets import QApplication
+from PySide6.QtGui import QClipboard
 
 class VoiceRecorder:
     def __init__(self, window, format=pyaudio.paInt16, channels=1, rate=44100, chunk=1024):
@@ -45,13 +46,17 @@ class VoiceRecorder:
 
     def update_model(self, model_name, quantization_type, device_type):
         model_str = f"ctranslate2-4you/whisper-{model_name}-ct2-{quantization_type}"
-        self.model = WhisperModel(model_str, device=device_type, compute_type=quantization_type, cpu_threads=10)
+        self.model = WhisperModel(model_str, device=device_type, compute_type=quantization_type, cpu_threads=26)
         self.window.update_status(f"Model updated to {model_name} with {quantization_type} quantization on {device_type} device")
         self.save_settings(model_name, quantization_type, device_type)
 
     def transcribe_audio(self, audio_file):
         segments, _ = self.model.transcribe(audio_file)
-        pyperclip.copy("\n".join([segment.text for segment in segments]))
+        clipboard_text = "\n".join([segment.text for segment in segments])
+        
+        clipboard = QApplication.clipboard()
+        clipboard.setText(clipboard_text)
+        
         self.window.update_status("Audio saved and transcribed")
 
     def record_audio(self):
@@ -81,9 +86,3 @@ class VoiceRecorder:
         if not self.is_recording:
             self.is_recording = True
             threading.Thread(target=self.record_audio).start()
-
-if __name__ == "__main__":
-    app = QApplication([])
-    window = MyWindow()
-    window.show()
-    app.exec()

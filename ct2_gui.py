@@ -91,9 +91,3 @@ class MyWindow(QWidget):
 
     def update_status(self, text):
         self.status_label.setText(text)
-
-if __name__ == "__main__":
-    app = QApplication([])
-    window = MyWindow()
-    window.show()
-    app.exec()

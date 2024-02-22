@@ -1,5 +1,6 @@
 import ctranslate2
 import yaml
+import platform
 
 class CheckQuantizationSupport:
     def has_cuda_device(self):
@@ -38,7 +39,3 @@ class CheckQuantizationSupport:
             yaml.safe_dump(config, f, default_style="'")
         
         print(f"Updated {device} quantizations in config.yaml to: {quantizations}")
-
-if __name__ == "__main__":
-    quantization_checker = CheckQuantizationSupport()
-    quantization_checker.update_supported_quantizations()
