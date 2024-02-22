@@ -5,7 +5,7 @@
 ### Tested onPython 3.10 and 3.11.
 ### You must have both [Git](https://git-scm.com/downloads) and [git-lfs](https://git-lfs.com/) installed.
 ### If you intend to use CUDA acceleration, you must also install [CUDA 11.8](https://developer.nvidia.com/cuda-11-8-0-download-archive).
-* Unfortunately, Ctranslate2 does not currently support GPU-acceleration on AMD GPUs or Apple's Metal/MPS. However, CPU acceleration still works for Intel, AMD, and Apple CPUs.
+* CUDA 12 support coming very soon.
 
 ## Installation
 > NOTE: For any ```python``` or ```pip``` commands in these instructions, if you still have Python 2 installed, make sure and run ```python3``` and ```pip3``` instead to make sure the correct Python interpreter is used.
