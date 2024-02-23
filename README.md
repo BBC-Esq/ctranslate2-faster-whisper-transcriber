@@ -61,6 +61,8 @@ Within the virtual environment run this command:
 ```
 python ct2_main.py
 ```
+‼️ If you receive an error something similar to this ```qt.qpa.plugin: Could not load the Qt platform plugin "xcb" in "/usr/lib/x86_64-linux-gnu/qt5/plugins/platforms"``` please check [here for a possible solution.](https://github.com/BBC-Esq/ctranslate2-faster-whisper-transcriber/issues/1).
+
 The first time using the program, click "Update Settings" button to download the model.  After that, you can change the model and quantization (and device) by simply changing the settings and clicking "Update Settings" again.<br><br>
 Click start recording, speak, then stop recording.  Then just use ```control + v``` or right click "paste" the transcription into wherever you want; for example, into the chat box for your LLM!<br><br>
 Remember, anytime you want to restart the program, make sure to activate the virtual environment first!
