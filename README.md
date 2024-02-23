@@ -48,10 +48,14 @@ pip3 install https://files.pythonhosted.org/packages/ff/11/401db7f4bfdcec3c4bd68
 ```
 pip3 install pip install faster-whisper==1.0.0
 ```
+> ‼️ I've received some reports of strange behavior since 1.0.0 was released.  If you encounter issues you can try using version 0.9.0, but note that it's not compatible with CUDA 12.
+```pip3 install https://files.pythonhosted.org/packages/ff/11/401db7f4bfdcec3c4bd685297c2fb11a3caa0a0fa3288bd209f973b877bb/faster_whisper-0.9.0-py3-none-any.whl```
 * AMD and MacOS systems
 ```
 pip3 install pip install faster-whisper==1.0.0
 ```
+> ‼️ I've received some reports of strange behavior since 1.0.0 was released.  If you encounter issues you can try using version 0.9.0, but note that it's not compatible with CUDA 12.
+```pip3 install https://files.pythonhosted.org/packages/ff/11/401db7f4bfdcec3c4bd685297c2fb11a3caa0a0fa3288bd209f973b877bb/faster_whisper-0.9.0-py3-none-any.whl```
 # Usage
 Within the virtual environment run this command:
 ```
