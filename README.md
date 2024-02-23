@@ -42,20 +42,20 @@ pip3 install -r requirements.txt
 ## Install Hardware-Specific Libraries
 * Nvidia GPU using CUDA 11.8 (linux or windows)
 ```
-pip3 install https://files.pythonhosted.org/packages/ff/11/401db7f4bfdcec3c4bd685297c2fb11a3caa0a0fa3288bd209f973b877bb/faster_whisper-0.9.0-py3-none-any.whl
+pip3 install faster-whisper==0.9.0
 ```
 * Nvidia GPU using CUDA 12.1+ (linux or windows)
 ```
 pip3 install pip install faster-whisper==1.0.0
 ```
 > ‼️ I've received some reports of strange behavior since 1.0.0 was released.  If you encounter issues you can try using version 0.9.0, but note that it's not compatible with CUDA 12.
-```pip3 install https://files.pythonhosted.org/packages/ff/11/401db7f4bfdcec3c4bd685297c2fb11a3caa0a0fa3288bd209f973b877bb/faster_whisper-0.9.0-py3-none-any.whl```
+```pip3 install faster-whisper==0.9.0```
 * AMD and MacOS systems
 ```
 pip3 install pip install faster-whisper==1.0.0
 ```
 > ‼️ I've received some reports of strange behavior since 1.0.0 was released.  If you encounter issues you can try using version 0.9.0, but note that it's not compatible with CUDA 12.
-```pip3 install https://files.pythonhosted.org/packages/ff/11/401db7f4bfdcec3c4bd685297c2fb11a3caa0a0fa3288bd209f973b877bb/faster_whisper-0.9.0-py3-none-any.whl```
+```pip3 install faster-whisper==0.9.0```
 # Usage
 Within the virtual environment run this command:
 ```
