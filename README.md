@@ -38,24 +38,16 @@ brew install portaudio
 ```
 pip3 install -r requirements.txt
 ```
-* [Go here](https://github.com/SYSTRAN/faster-whisper) for instructions on how to install cublas/cudnn and any other dependencies specifically required by ```faster-whisper```.
+* [Go here](https://github.com/SYSTRAN/faster-whisper) for instructions on how to get the "cublas" and "cudnn" libraries and place them in the directory the the scripts.
 ## Install Hardware-Specific Libraries
-* Nvidia GPU using CUDA 11.8 (linux or windows)
+* For Nvidia GPU Acceleration
 ```
-pip3 install faster-whisper==0.9.0
+pip3 install faster-whisper==0.10.1
 ```
-* Nvidia GPU using CUDA 12.1+ (linux or windows)
-```
-pip3 install pip install faster-whisper==1.0.0
-```
-> ‼️ I've received some reports of strange behavior since 1.0.0 was released.  If you encounter issues you can try using version 0.9.0, but note that it's not compatible with CUDA 12.
-```pip3 install faster-whisper==0.9.0```
 * AMD and MacOS systems
 ```
-pip3 install pip install faster-whisper==1.0.0
+pip3 install faster-whisper==0.10.1
 ```
-> ‼️ I've received some reports of strange behavior since 1.0.0 was released.  If you encounter issues you can try using version 0.9.0, but note that it's not compatible with CUDA 12.
-```pip3 install faster-whisper==0.9.0```
 # Usage
 Within the virtual environment run this command:
 ```
