@@ -38,17 +38,15 @@ brew install portaudio
 ```
 pip3 install -r requirements.txt
 ```
-## Install Hardware-Specific Libraries
-* For Nvidia GPU Acceleration (windows or linux)
+## Install Faster-Whisper
 ```
 pip3 install faster-whisper==0.10.1
 ```
+## Nvidia GPU support
+Only systems with GPU acceleration need to follow this step:
   > [Go here](https://github.com/SYSTRAN/faster-whisper) for instructions on how to get the "cublas" and "cudnn" libraries and place them in the directory.<br>
   > Alternatively, [you can go here](https://github.com/Purfview/whisper-standalone-win/releases/tag/libs).
-* AMD and MacOS systems
-```
-pip3 install faster-whisper==0.10.1
-```
+
 # Usage
 Within the virtual environment run this command:
 ```
