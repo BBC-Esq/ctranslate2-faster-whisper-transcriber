@@ -38,12 +38,13 @@ brew install portaudio
 ```
 pip3 install -r requirements.txt
 ```
-* [Go here](https://github.com/SYSTRAN/faster-whisper) for instructions on how to get the "cublas" and "cudnn" libraries and place them in the directory the the scripts.
 ## Install Hardware-Specific Libraries
-* For Nvidia GPU Acceleration
+* For Nvidia GPU Acceleration (windows or linux)
 ```
 pip3 install faster-whisper==0.10.1
 ```
+  > [Go here](https://github.com/SYSTRAN/faster-whisper) for instructions on how to get the "cublas" and "cudnn" libraries and place them in the directory.<br>
+  > Alternatively, [you can go here](https://github.com/Purfview/whisper-standalone-win/releases/tag/libs).
 * AMD and MacOS systems
 ```
 pip3 install faster-whisper==0.10.1
@@ -53,7 +54,7 @@ Within the virtual environment run this command:
 ```
 python ct2_main.py
 ```
-‼️ If you receive an error something similar to this ```qt.qpa.plugin: Could not load the Qt platform plugin "xcb" in "/usr/lib/x86_64-linux-gnu/qt5/plugins/platforms"``` please check [here for a possible solution.](https://github.com/BBC-Esq/ctranslate2-faster-whisper-transcriber/issues/1).
+‼️ If you receive an error something similar to this ```qt.qpa.plugin: Could not load the Qt platform plugin "xcb"``` please check [here for a possible solution.](https://github.com/BBC-Esq/ctranslate2-faster-whisper-transcriber/issues/1).
 
 <details><summary>EXAMPLE COMMANDS</summary>
 
