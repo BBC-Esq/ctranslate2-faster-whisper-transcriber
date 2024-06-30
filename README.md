@@ -10,19 +10,27 @@
 
 Download the latest release and unzip the files to your chosen directory.
 
-## Setup
-Navigate to the folder containing ```ct2_main.py```, open a command prompt, and create a virtual environment:
+# Installation
+
+### Step 1
+
+Download the latest release in ZIP and extract to your computer.  Then navigate to the folder containing the ```ct2_main.py``` file, open a command prompt, and create a virtual environment.
 ```
 python -m venv .
 ```
+### Step 2
+Activate the virtual environment.
 ```
 .\Scripts\activate
 ```
   > ‼️On Linux and MacOS run: ```source bin/activate```
+### Step 3
+Upgrade installation libraries.
 ```
-python -m pip3 install --upgrade pip
+python -m pip install --upgrade pip setuptools
 ```
-## Install Platform-Specific Libraries
+### Step 4 (only for Linux or Mac users)
+Certain libraries are additonal requirements on Linux or MacOS systems:
 * Linux
 ```
 sudo apt-get install python3-dev
@@ -34,13 +42,15 @@ sudo apt-get install portaudio19-dev
 ```
 brew install portaudio
 ```
-## Install Dependencies
+### Step 5
+Install dependencies.
 ```
 pip3 install -r requirements.txt
 ```
-## Install Faster-Whisper
+### Step 6
+Install Faster-Whisper
 ```
-pip3 install faster-whisper==0.10.1
+pip install faster-whisper==0.10.1
 ```
 ## Nvidia GPU support
 Only systems with GPU acceleration need to follow this step:
