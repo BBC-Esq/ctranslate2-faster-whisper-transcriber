@@ -6,10 +6,6 @@
 2) [Git](https://git-scm.com/downloads)
 3) [git-lfs](https://git-lfs.com/)
 
-## Obtain Repository
-
-Download the latest release and unzip the files to your chosen directory.
-
 # Installation
 
 ### Step 1
@@ -25,12 +21,12 @@ Activate the virtual environment.
 ```
   > ‼️On Linux and MacOS run: ```source bin/activate```
 ### Step 3
-Upgrade installation libraries.
+Run the installation script.
 ```
-python -m pip install --upgrade pip setuptools
+python setup.py
 ```
 ### Step 4 (only for Linux or Mac users)
-Certain libraries are additonal requirements on Linux or MacOS systems:
+The ```setup.py``` script should handle everything, but if you encounter errors on Linux or MacOS you might need to install additional dependencies.
 * Linux
 ```
 sudo apt-get install python3-dev
@@ -42,20 +38,6 @@ sudo apt-get install portaudio19-dev
 ```
 brew install portaudio
 ```
-### Step 5
-Install dependencies.
-```
-pip3 install -r requirements.txt
-```
-### Step 6
-Install Faster-Whisper
-```
-pip install faster-whisper==0.10.1
-```
-## Nvidia GPU support
-Only systems with GPU acceleration need to follow this step:
-  > [Go here](https://github.com/SYSTRAN/faster-whisper) for instructions on how to get the "cublas" and "cudnn" libraries and place them in the directory.<br>
-  > Alternatively, [you can go here](https://github.com/Purfview/whisper-standalone-win/releases/tag/libs).
 
 # Usage
 Within the virtual environment run this command:
