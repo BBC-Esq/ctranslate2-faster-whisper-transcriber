@@ -26,7 +26,7 @@ Run the installation script.
 python setup.py
 ```
 ### Step 4 (only for Linux or Mac users)
-The ```setup.py``` script should handle everything, but if you encounter errors on Linux or MacOS you might need to install additional dependencies.
+The ```setup.py``` script should handle everything, but if you encounter errors on Linux or MacOS you might need to install additional dependencies.  You can try using [linux-mac_dependencies.py](https://github.com/BBC-Esq/ctranslate2-faster-whisper-transcriber/blob/main/linux-mac_dependencies.py) or the following:
 * Linux
 ```
 sudo apt-get install python3-dev
