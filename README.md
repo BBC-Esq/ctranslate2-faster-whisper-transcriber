@@ -2,7 +2,7 @@
 ### Record audio and save a transcription to your system's clipboard with ctranslate2 and faster-whisper.
 
 ## Prerequisites
-1) Python 3.11.
+1) [Python 3.11](https://www.python.org/downloads/release/python-3119/)
 2) [Git](https://git-scm.com/downloads)
 3) [git-lfs](https://git-lfs.com/)
 
