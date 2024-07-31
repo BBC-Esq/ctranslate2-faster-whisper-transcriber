@@ -11,14 +11,14 @@ def set_cuda_paths():
 
     paths_to_add = [str(cuda_path), str(cublas_path), str(cudnn_path)]
 
-    env_vars = ['CUDA_PATH', 'CUDA_PATH_V12_2', 'PATH']
+    env_vars = ['CUDA_PATH', 'CUDA_PATH_V12_1', 'PATH']
 
     for env_var in env_vars:
         current_value = os.environ.get(env_var, '')
         new_value = os.pathsep.join(paths_to_add + [current_value] if current_value else paths_to_add)
         os.environ[env_var] = new_value
 
-    print("CUDA paths have been set or updated in the environment variables.")
+    # print("CUDA paths have been set or updated in the environment variables.")
 
 set_cuda_paths()
 
