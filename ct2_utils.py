@@ -42,5 +42,3 @@ class CheckQuantizationSupport:
 
         with open("config.yaml", "w") as f:
             yaml.safe_dump(config, f, default_style="'")
-        
-        # print(f"Updated {device} quantizations in config.yaml to: {quantizations}")
