@@ -52,6 +52,11 @@ python ct2_main.py
 
 </details>
 
+# Creating an .exe file
+
+* Install ```pyinstaller```
+* Run ```pyinstaller --onefile ct2_main.py```
+
 The first time using the program, click "Update Settings" button to download the model.  After that, you can change the model and quantization (and device) by simply changing the settings and clicking "Update Settings" again.<br><br>
 Click start recording, speak, then stop recording.  Then just use ```control + v``` or right click "paste" the transcription into wherever you want; for example, into the chat box for your LLM!<br><br>
 Remember, anytime you want to restart the program, make sure to activate the virtual environment first!
