@@ -7,27 +7,44 @@ from pathlib import Path
 def install_libraries_with_retry(max_retries=3, delay=3):
     libraries = [
         "av==12.3.0",
-        "CFFI==1.16.0",
         "certifi==2024.7.4",
+        "cffi==1.16.0",
         "chardet==5.2.0",
+        "charset-normalizer==3.3.2",
+        "colorama==0.4.6",
+        "coloredlogs==15.0.1",
         "ctranslate2==4.3.1",
         "faster-whisper==1.0.2",
         "filelock==3.15.4",
-        "huggingface-hub==0.24.1",
+        "flatbuffers==24.3.25",
+        "fsspec==2024.9.0",
+        "huggingface-hub==0.25.1",
+        "humanfriendly==10.0",
         "idna==3.7",
+        "mpmath==1.3.0",
+        "numpy==1.26.4",
         "nvidia-cublas-cu12==12.1.3.1",
         "nvidia-cuda-nvrtc-cu12==12.1.105",
         "nvidia-cuda-runtime-cu12==12.1.105",
         "nvidia-cudnn-cu12==8.9.7.29",
-        "numpy==1.26.4",
+        "onnxruntime==1.19.2",
+        "packaging==24.1",
+        "pip==24.2",
+        "protobuf==5.28.2",
         "pycparser==2.22",
+        "pyreadline3==3.5.4",
         "PyYAML==6.0.1",
         "requests==2.32.3",
+        "setuptools==75.1.0",
+        "shiboken6==6.7.3",
         "sounddevice==0.4.7",
+        "sympy==1.13.3",
         "tokenizers==0.19.1",
         "tqdm==4.66.4",
-        "urllib3==2.2.2"
+        "typing_extensions==4.12.2",
+        "urllib3==2.2.2",
     ]
+
 
     failed_installations = []
     multiple_attempts = []
