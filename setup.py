@@ -1,6 +1,5 @@
 import subprocess
 import sys
-import os
 import time
 from pathlib import Path
 
@@ -43,38 +42,6 @@ def install_libraries_with_retry(max_retries=3, delay=3):
         "tqdm==4.66.4",
         "typing_extensions==4.12.2",
         "urllib3==2.2.2",
-        "llm==0.16",
-        "annotated-types==0.7.0",
-        "anyio==4.6.0",
-        "click",
-        "click-default-group>=1.2.3",
-        "distro==1.9.0",
-        "exceptiongroup==1.2.2",
-        "h11==0.14.0",
-        "httpcore==1.0.6",
-        "httpx==0.27.2",
-        "jiter==0.5.0",
-        "openai==1.51.0",
-        "pefile==2024.8.26",
-        "pluggy==1.5.0",
-        "pydantic>=1.10.2",
-        "pydantic-core==2.23.4",
-        "pyinstaller==6.10.0",
-        "pyinstaller-hooks-contrib==2024.8",
-        "pyreadline3; sys_platform == 'win32'",
-        "pyside6==6.7.3",
-        "pyside6-addons==6.7.3",
-        "pyside6-essentials==6.7.3",
-        "python-dateutil==2.9.0.post0",
-        "python-ulid",
-        "PyYAML",
-        "setuptools",
-        "six==1.16.0",
-        "sniffio==1.3.1",
-        "sqlite-fts4==1.0.3",
-        "sqlite-migrate>=0.1a2",
-        "sqlite-utils>=3.37",
-        "tabulate==0.9.0",
     ]
 
 
@@ -99,6 +66,25 @@ def install_libraries_with_retry(max_retries=3, delay=3):
                 else:
                     print(f"Failed to install {library} after {max_retries} attempts.")
                     failed_installations.append(library)
+
+    # Then just install the openai library with retries
+    for attempt in range(max_retries):
+        try:
+            print(f"\nAttempt {attempt + 1} of {max_retries}: Installing openai")
+            command = [sys.executable, "-m", "uv", "pip", "install", "openai", "--no-cache-dir"]
+            subprocess.run(command, check=True, capture_output=True, text=True)
+            print(f"Successfully installed openai")
+            if attempt > 0:
+                multiple_attempts.append(("openai", attempt + 1))
+            break
+        except subprocess.CalledProcessError as e:
+            print(f"Attempt {attempt + 1} failed. Error: {e.stderr.strip()}")
+            if attempt < max_retries - 1:
+                print(f"Retrying in {delay} seconds...")
+                time.sleep(delay)
+            else:
+                print(f"Failed to install openai after {max_retries} attempts.")
+                failed_installations.append("openai")
 
     print("\n--- Installation Summary ---")
     if failed_installations:
