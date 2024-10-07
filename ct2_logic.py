@@ -9,6 +9,7 @@ from faster_whisper import WhisperModel
 import yaml
 import threading
 import logging
+from ct2_llm import LLMFormatter
 
 logger = logging.getLogger(__name__)
 
@@ -59,13 +60,10 @@ class TranscriptionThread(QThread):
             # strip leading and trailing whitespace from the clipboard
             clipboard_text = clipboard_text.strip()
 
-            # Get the model to format this in a natural way.
-            # model = llm.get_model("gpt-4o-mini")
-            # response = model.prompt(
-            #     "Give me the corrected version of this transcription:\n\n" + clipboard_text,
-            #     system="You are an AI assistant that reviews speech-to-text transcriptions and corrects them for natural line breaks (i.e. paragraphs) during natural pauses. You only responsd with the corrected transcription."
-            # )
-            # clipboard_text = response.text().strip()
+            llm_formatter = LLMFormatter()
+            clipboard_text = llm_formatter.format_transcription(clipboard_text)
+
+            print(clipboard_text)
 
             self.transcription_done.emit(clipboard_text)
         except Exception as e:

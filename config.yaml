@@ -1,3 +1,16 @@
 device_type: cpu
 model_name: base.en
 quantization_type: int8
+supported_quantizations:
+  cpu:
+  - int8
+  - float32
+  - int8_float32
+  cuda:
+  - int8_float16
+  - int8_float32
+  - float32
+  - int8
+  - bfloat16
+  - float16
+  - int8_bfloat16
