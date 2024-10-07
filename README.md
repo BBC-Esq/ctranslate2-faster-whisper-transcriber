@@ -1,5 +1,6 @@
 # Record and Transcribe Audio Using Ctranslate2!
-### Record audio and save a transcription to your system's clipboard with ctranslate2 and faster-whisper.
+
+Record audio and save a transcription to your system's clipboard with ctranslate2 and faster-whisper. Then have that transcription corrected by GPT-4o-mini using Simon Willison's [llm library](https://github.com/simonw/llm) and saved to your clipboard.
 
 ## Prerequisites
 1) [Python 3.11](https://www.python.org/downloads/release/python-3119/)
@@ -25,8 +26,15 @@ Run the installation script.
 ```
 python setup.py
 ```
-### Step 4 (only for Linux or Mac users)
-The ```setup.py``` script should handle everything, but if you encounter errors on Linux or MacOS you might need to install additional dependencies.  You can try using [linux-mac_dependencies.py](https://github.com/BBC-Esq/ctranslate2-faster-whisper-transcriber/blob/main/linux-mac_dependencies.py) or the following:
+### Step 4
+Set your OpenAI API key using `llm` in your terminal:
+```
+llm keys set openai
+```
+This will then prompt you to enter your API key.
+
+### Step 5 (only for Linux or Mac users)
+The ```setup.py``` script should handle everything, but if you encounter errors on Linux or MacOS you might need to install additional dependencies.  You can try using [linux-mac_dependencies.py](https://github.com/mikecreighton/ctranslate2-faster-whisper-transcriber/blob/main/linux-mac_dependencies.py) or the following:
 * Linux
 ```
 sudo apt-get install python3-dev
@@ -50,13 +58,16 @@ python ct2_main.py
 
 ![image](https://github.com/BBC-Esq/ctranslate2-faster-whisper-transcriber/assets/108230321/a00f9625-4aad-44e9-b6aa-5ebddd63ace4)
 
+
+The first time using the program, click "Update Settings" button to download the model. After that, you can change the model and quantization (and device) by simply changing the settings and clicking "Update Settings" again.
+
+Click start recording, speak, then stop recording. Then just use ```control + v``` or right click "paste" the transcription into wherever you want; for example, into the chat box for your LLM!
+
+Remember, anytime you want to restart the program, make sure to activate the virtual environment first!
+
 </details>
 
 # Creating an .exe file
 
 * Install ```pyinstaller```
 * Run ```pyinstaller --onefile ct2_main.py```
-
-The first time using the program, click "Update Settings" button to download the model.  After that, you can change the model and quantization (and device) by simply changing the settings and clicking "Update Settings" again.<br><br>
-Click start recording, speak, then stop recording.  Then just use ```control + v``` or right click "paste" the transcription into wherever you want; for example, into the chat box for your LLM!<br><br>
-Remember, anytime you want to restart the program, make sure to activate the virtual environment first!

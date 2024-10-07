@@ -43,6 +43,7 @@ def install_libraries_with_retry(max_retries=3, delay=3):
         "tqdm==4.66.4",
         "typing_extensions==4.12.2",
         "urllib3==2.2.2",
+        "llm==0.16",
     ]
 
 
