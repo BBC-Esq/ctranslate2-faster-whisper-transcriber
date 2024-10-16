@@ -1,13 +1,7 @@
-from PySide6.QtWidgets import (
-    QApplication, QWidget, QVBoxLayout, QPushButton, QLabel,
-    QComboBox, QHBoxLayout, QGroupBox, QMessageBox
-)
+from PySide6.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton, QLabel, QComboBox, QHBoxLayout, QGroupBox
 from PySide6.QtCore import Qt
 from ct2_logic import VoiceRecorder
 import yaml
-import logging
-
-logger = logging.getLogger(__name__)
 
 class MyWindow(QWidget):
     def __init__(self, cuda_available=False):
@@ -25,10 +19,9 @@ class MyWindow(QWidget):
                 config = yaml.safe_load(f)
                 model = config.get("model_name", "base.en")
                 quantization = config.get("quantization_type", "int8")
-                device = config.get("device_type", "cpu")
+                device = config.get("device_type", "auto")
                 self.supported_quantizations = config.get("supported_quantizations", {"cpu": [], "cuda": []})
         except FileNotFoundError:
-            logger.warning("config.yaml not found. Using default settings.")
             model, quantization, device = "base.en", "int8", "cpu"
             self.supported_quantizations = {"cpu": [], "cuda": []}
 
@@ -37,7 +30,7 @@ class MyWindow(QWidget):
         layout.addWidget(self.record_button)
 
         self.stop_button = QPushButton("Stop and Transcribe", self)
-        self.stop_button.clicked.connect(self.recorder.save_audio)
+        self.stop_button.clicked.connect(self.recorder.stop_recording)
         layout.addWidget(self.stop_button)
 
         settings_group = QGroupBox("Settings")
@@ -128,7 +121,8 @@ class MyWindow(QWidget):
         self.quantization_dropdown.setEnabled(enabled)
         self.device_dropdown.setEnabled(enabled)
         self.update_model_btn.setEnabled(enabled)
-        if not enabled:
-            QApplication.setOverrideCursor(Qt.WaitCursor)
-        else:
-            QApplication.restoreOverrideCursor()
+
+    def closeEvent(self, event):
+        if hasattr(self, 'recorder'):
+            self.recorder.stop_all_threads()
+        super().closeEvent(event)

@@ -31,6 +31,7 @@ def install_libraries_with_retry(max_retries=3, delay=3):
         "packaging==24.1",
         "pip==24.2",
         "protobuf==5.28.2",
+        "psutil==6.0.0",
         "pycparser==2.22",
         "pyreadline3==3.5.4",
         "PyYAML==6.0.1",
