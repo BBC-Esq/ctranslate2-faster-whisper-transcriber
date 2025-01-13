@@ -37,7 +37,6 @@ def install_libraries_with_retry(max_retries=3, delay=3):
         "PyYAML==6.0.1",
         "requests==2.32.3",
         "setuptools==75.1.0",
-        "shiboken6==6.7.3",
         "sounddevice==0.4.7",
         "sympy==1.13.3",
         "tokenizers==0.19.1",
