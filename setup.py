@@ -1,61 +1,85 @@
-import subprocess
 import sys
-import os
+import subprocess
 import time
-from pathlib import Path
+import os
+import tkinter as tk
+from tkinter import messagebox
+from constants import priority_libs, libs, full_install_libs
 
-def install_libraries_with_retry(max_retries=3, delay=3):
-    libraries = [
-        "av==12.3.0",
-        "certifi==2024.7.4",
-        "cffi==1.16.0",
-        "chardet==5.2.0",
-        "charset-normalizer==3.3.2",
-        "colorama==0.4.6",
-        "coloredlogs==15.0.1",
-        "ctranslate2==4.3.1",
-        "faster-whisper==1.0.2",
-        "filelock==3.15.4",
-        "flatbuffers==24.3.25",
-        "fsspec==2024.9.0",
-        "huggingface-hub==0.25.1",
-        "humanfriendly==10.0",
-        "idna==3.7",
-        "mpmath==1.3.0",
-        "numpy==1.26.4",
-        "nvidia-cublas-cu12==12.1.3.1",
-        "nvidia-cuda-nvrtc-cu12==12.1.105",
-        "nvidia-cuda-runtime-cu12==12.1.105",
-        "nvidia-cudnn-cu12==8.9.7.29",
-        "onnxruntime==1.19.2",
-        "packaging==24.1",
-        "pip==24.2",
-        "protobuf==5.28.2",
-        "psutil==6.0.0",
-        "pycparser==2.22",
-        "pyreadline3==3.5.4",
-        "PyYAML==6.0.1",
-        "requests==2.32.3",
-        "setuptools==75.1.0",
-        "sounddevice==0.4.7",
-        "sympy==1.13.3",
-        "tokenizers==0.19.1",
-        "tqdm==4.66.4",
-        "typing_extensions==4.12.2",
-        "urllib3==2.2.2",
+start_time = time.time()
+
+def has_nvidia_gpu():
+    try:
+        result = subprocess.run(
+            ["nvidia-smi"], 
+            stdout=subprocess.PIPE, 
+            stderr=subprocess.PIPE
+        )
+        return result.returncode == 0
+    except FileNotFoundError:
+        return False
+
+python_version = f"cp{sys.version_info.major}{sys.version_info.minor}"
+hardware_type = "GPU" if has_nvidia_gpu() else "CPU"
+
+def tkinter_message_box(title, message, type="info", yes_no=False):
+    root = tk.Tk()
+    root.withdraw()
+    if yes_no:
+        result = messagebox.askyesno(title, message)
+    elif type == "error":
+        messagebox.showerror(title, message)
+        result = False
+    else:
+        messagebox.showinfo(title, message)
+        result = True
+    root.destroy()
+    return result
+
+def check_python_version_and_confirm():
+    major, minor = map(int, sys.version.split()[0].split('.')[:2])
+    if major == 3 and minor in [11, 12]:
+        return tkinter_message_box("Confirmation", f"Python version {sys.version.split()[0]} was detected, which is compatible.\n\nClick YES to proceed or NO to exit.", yes_no=True)
+    else:
+        tkinter_message_box("Python Version Error", "This program requires Python 3.11 or 3.12\n\nPython versions prior to 3.11 or after 3.12 are not supported.\n\nExiting the installer...", type="error")
+        return False
+
+def upgrade_pip_setuptools_wheel(max_retries=5, delay=3):
+    upgrade_commands = [
+        [sys.executable, "-m", "pip", "install", "--upgrade", "pip", "--no-cache-dir"],
+        [sys.executable, "-m", "pip", "install", "--upgrade", "setuptools", "--no-cache-dir"],
+        [sys.executable, "-m", "pip", "install", "--upgrade", "wheel", "--no-cache-dir"]
     ]
+    
+    for command in upgrade_commands:
+        package = command[5]
+        for attempt in range(max_retries):
+            try:
+                print(f"\nAttempt {attempt + 1} of {max_retries}: Upgrading {package}...")
+                process = subprocess.run(command, check=True, capture_output=True, text=True, timeout=480)
+                print(f"\033[92mSuccessfully upgraded {package}\033[0m")
+                break
+            except subprocess.CalledProcessError as e:
+                print(f"Attempt {attempt + 1} failed. Error: {e.stderr.strip()}")
+                if attempt < max_retries - 1:
+                    print(f"Retrying in {delay} seconds...")
+                    time.sleep(delay)
 
-
+def install_libraries_with_retry(libraries, with_deps=False, max_retries=5, delay=3):
     failed_installations = []
     multiple_attempts = []
-
+    
     for library in libraries:
         for attempt in range(max_retries):
             try:
                 print(f"\nAttempt {attempt + 1} of {max_retries}: Installing {library}")
-                command = [sys.executable, "-m", "uv", "pip", "install", library, "--no-deps", "--no-cache-dir"]
-                subprocess.run(command, check=True, capture_output=True, text=True)
-                print(f"Successfully installed {library}")
+                if with_deps:
+                    command = ["uv", "pip", "install", library]
+                else:
+                    command = ["uv", "pip", "install", library, "--no-deps"]
+                    
+                subprocess.run(command, check=True, capture_output=True, text=True, timeout=480)
+                print(f"\033[92mSuccessfully installed {library}\033[0m")
                 if attempt > 0:
                     multiple_attempts.append((library, attempt + 1))
                 break
@@ -65,56 +89,70 @@ def install_libraries_with_retry(max_retries=3, delay=3):
                     print(f"Retrying in {delay} seconds...")
                     time.sleep(delay)
                 else:
-                    print(f"Failed to install {library} after {max_retries} attempts.")
                     failed_installations.append(library)
-
-    print("\n--- Installation Summary ---")
-    if failed_installations:
-        print("\nThe following libraries failed to install:")
-        for lib in failed_installations:
-            print(f"- {lib}")
     
-    if multiple_attempts:
-        print("\nThe following libraries required multiple attempts to install:")
-        for lib, attempts in multiple_attempts:
-            print(f"- {lib} (took {attempts} attempts)")
-    
-    if not failed_installations and not multiple_attempts:
-        print("\nAll libraries installed successfully on the first attempt.")
-    elif not failed_installations:
-        print("\nAll libraries were eventually installed successfully.")
-
     return failed_installations, multiple_attempts
 
 def main():
-    start_time = time.time()
+    if not check_python_version_and_confirm():
+        sys.exit(1)
+
+    nvidia_gpu_detected = has_nvidia_gpu()
+    message = "An NVIDIA GPU has been detected.\n\nDo you want to proceed with the installation?" if nvidia_gpu_detected else \
+              "No NVIDIA GPU has been detected. CPU version will be installed.\n\nDo you want to proceed?"
     
-    # install uv
+    if not tkinter_message_box("Hardware Detection", message, yes_no=True):
+        sys.exit(1)
+
+    # 1. Install uv
     print("\033[92mInstalling uv:\033[0m")
     subprocess.run(["pip", "install", "uv"], check=True)
 
-    print("\033[92mInstalling PySide6:\033[0m")
-    subprocess.run(["uv", "pip", "install", "pyside6", "--no-cache-dir", "--link-mode=copy"], check=True)
-    
-    # Upgrade pip, setuptools, and wheel using uv
+    # 2. Upgrade core packages
     print("\033[92mUpgrading pip, setuptools, and wheel:\033[0m")
-    subprocess.run(f"{sys.executable} -m uv pip install --upgrade pip setuptools wheel", shell=True, check=True)
-    
-    # Step 2: Install libraries with retry using uv
-    print("\033[92mInstalling dependencies:\033[0m")
-    failed, multiple = install_libraries_with_retry()
-    
-    if not failed:
-        print("\033[92mInstallation was successful! The program is ready to use.")
-        print(f"To run it, enter the command: python ct2_main.py\033[0m")
-    else:
-        print("\033[91mInstallation encountered some issues. Please review the installation summary above.\033[0m")
+    upgrade_pip_setuptools_wheel()
+
+    # 3. Install priority libraries based on hardware
+    print("\033[92mInstalling priority libraries:\033[0m")
+    try:
+        current_priority_libs = priority_libs[python_version][hardware_type]
+        priority_failed, priority_multiple = install_libraries_with_retry(current_priority_libs)
+    except KeyError:
+        tkinter_message_box("Version Error", f"No libraries configured for Python {python_version} with {hardware_type} configuration", type="error")
+        sys.exit(1)
+
+    # 4. Install regular libraries
+    print("\033[92mInstalling other libraries:\033[0m")
+    other_failed, other_multiple = install_libraries_with_retry(libs)
+
+    # 5. Install full installation libraries with dependencies
+    print("\033[92mInstalling libraries with dependencies:\033[0m")
+    full_failed, full_multiple = install_libraries_with_retry(full_install_libs, with_deps=True)
+
+    # Installation summary
+    all_failed = priority_failed + other_failed + full_failed
+    all_multiple = priority_multiple + other_multiple + full_multiple
+
+    print("\n----- Installation Summary -----")
+    if all_failed:
+        print("\033[91m\nThe following libraries failed to install:\033[0m")
+        for lib in all_failed:
+            print(f"\033[91m- {lib}\033[0m")
+
+    if all_multiple:
+        print("\033[93m\nThe following libraries required multiple attempts:\033[0m")
+        for lib, attempts in all_multiple:
+            print(f"\033[93m- {lib} (took {attempts} attempts)\033[0m")
+
+    if not all_failed and not all_multiple:
+        print("\033[92mAll libraries installed successfully on the first attempt.\033[0m")
+    elif not all_failed:
+        print("\033[92mAll libraries were eventually installed successfully.\033[0m")
 
     end_time = time.time()
     total_time = end_time - start_time
     hours, rem = divmod(total_time, 3600)
     minutes, seconds = divmod(rem, 60)
-
     print(f"\033[92m\nTotal installation time: {int(hours):02d}:{int(minutes):02d}:{seconds:05.2f}\033[0m")
 
 if __name__ == "__main__":
