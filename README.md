@@ -2,7 +2,7 @@
 Easily record audio to your system's clipboard so you can copy and paste it.
 
 ## Requirments
-1) Python 3.11 or Python 3.12
+1) [Python 3.11](https://www.python.org/downloads/release/python-3119/) or [Python 3.12](https://www.python.org/downloads/release/python-3129/)
 2) [Git](https://git-scm.com/downloads)
 3) [git-lfs](https://git-lfs.com/)
 4) Windows
