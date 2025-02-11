@@ -212,6 +212,7 @@ class VoiceRecorder(QObject):
     @Slot(str)
     def on_transcription_done(self, clipboard_text):
         QApplication.instance().clipboard().setText(clipboard_text)
+        self.window.update_clipboard(clipboard_text)
         self.update_status_signal.emit("Audio transcribed and copied to clipboard")
         self.enable_widgets_signal.emit(True)
 
@@ -251,10 +252,10 @@ class VoiceRecorder(QObject):
         while not self.recording_thread.buffer.empty():
             audio_data.append(self.recording_thread.buffer.get())
         data = np.concatenate(audio_data)
-        
+
         with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as temp_file:
             temp_filename = temp_file.name
-        
+
         try:
             with wave.open(temp_filename, "wb") as wf:
                 wf.setnchannels(self.channels)

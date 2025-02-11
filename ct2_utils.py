@@ -3,9 +3,9 @@ import yaml
 import platform
 
 class CheckQuantizationSupport:
-    
+
     excluded_types = ['int16', 'int8', 'int8_float32', 'int8_float16', 'int8_bfloat16']
-    
+
     def has_cuda_device(self):
         cuda_device_count = ctranslate2.get_cuda_device_count()
         return cuda_device_count > 0

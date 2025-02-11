@@ -43,7 +43,7 @@ libs = [
     "faster-whisper==1.1.1",
     "filelock==3.17.0",
     "flatbuffers==25.2.10",
-    "fsspec==2024.9.0",
+    "fsspec==2025.2.0",
     "huggingface-hub==0.28.1",
     "humanfriendly==10.0",
     "idna==3.10",

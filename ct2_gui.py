@@ -1,13 +1,57 @@
-from PySide6.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton, QLabel, QComboBox, QHBoxLayout, QGroupBox
+from PySide6.QtWidgets import (QApplication, QWidget, QVBoxLayout, QPushButton, 
+    QLabel, QComboBox, QHBoxLayout, QGroupBox, QTextEdit)
 from PySide6.QtCore import Qt
 from ct2_logic import VoiceRecorder
 import yaml
+
+class ClipboardWindow(QWidget):
+    def __init__(self, main_window=None):
+        super().__init__()
+        self.main_window = main_window
+        self.setWindowTitle("Current Transcription")
+
+        layout = QVBoxLayout(self)
+
+        self.text_display = QTextEdit()
+        self.text_display.setReadOnly(True)
+        layout.addWidget(self.text_display)
+
+        self.setWindowFlags(Qt.Window | Qt.WindowStaysOnTopHint)
+        self.resize(300, self.main_window.height() if main_window else 250)
+        self.hide()
+
+    def update_text(self, text):
+        self.text_display.setText(text)
+
+    def update_history(self, text):
+        current_text = self.clipboard_history.toPlainText()
+        if current_text:
+            self.clipboard_history.setText(f"{text}\n\n{current_text}")
+        else:
+            self.clipboard_history.setText(text)
+            
+    def showEvent(self, event):
+        if self.main_window:
+            main_geo = self.main_window.geometry()
+            self.setGeometry(
+                main_geo.x() - self.width(), 
+                main_geo.y(),
+                self.width(),
+                main_geo.height()
+            )
+        super().showEvent(event)
 
 class MyWindow(QWidget):
     def __init__(self, cuda_available=False):
         super().__init__()
 
         layout = QVBoxLayout(self)
+
+        self.clipboard_window = ClipboardWindow(self)
+
+        view_btn = QPushButton("View Clipboard History", self)
+        view_btn.clicked.connect(self.toggle_clipboard)
+        layout.addWidget(view_btn)
 
         self.status_label = QLabel('', self)
         layout.addWidget(self.status_label)
@@ -42,8 +86,8 @@ class MyWindow(QWidget):
         h_layout.addWidget(model_label)
         self.model_dropdown = QComboBox(self)
         self.model_dropdown.addItems([
-            "tiny", "tiny.en", "base", "base.en", "small", "small.en", "medium", "medium.en", "large-v2",
-            "distil-whisper-small.en", "distil-whisper-medium.en", "distil-whisper-large-v2", "distil-whisper-large-v3"
+            "tiny", "tiny.en", "base", "base.en", "small", "small.en", "medium", "medium.en", "large-v3",
+            "distil-whisper-small.en", "distil-whisper-medium.en", "distil-whisper-large-v3"
         ])
         h_layout.addWidget(self.model_dropdown)
         self.model_dropdown.setCurrentText(model)
@@ -84,6 +128,15 @@ class MyWindow(QWidget):
         self.recorder.update_status_signal.connect(self.update_status)
         self.recorder.enable_widgets_signal.connect(self.set_widgets_enabled)
 
+    def toggle_clipboard(self):
+        if self.clipboard_window.isVisible():
+            self.clipboard_window.hide()
+        else:
+            self.clipboard_window.show()
+
+    def update_clipboard(self, text):
+        self.clipboard_window.update_text(text)
+
     def update_quantization_options(self):
         model = self.model_dropdown.currentText()
         device = self.device_dropdown.currentText()
@@ -122,7 +175,16 @@ class MyWindow(QWidget):
         self.device_dropdown.setEnabled(enabled)
         self.update_model_btn.setEnabled(enabled)
 
+    def moveEvent(self, event):
+        if self.clipboard_window.isVisible():
+            self.clipboard_window.move(
+                self.x() - self.clipboard_window.width(),
+                self.y()
+            )
+        super().moveEvent(event)
+
     def closeEvent(self, event):
+        self.clipboard_window.close()
         if hasattr(self, 'recorder'):
             self.recorder.stop_all_threads()
         super().closeEvent(event)

@@ -11,7 +11,7 @@ def set_cuda_paths():
     cublas_path = nvidia_base_path / 'cublas' / 'bin'
     cudnn_path = nvidia_base_path / 'cudnn' / 'bin'
     paths_to_add = [str(cuda_path), str(cublas_path), str(cudnn_path)]
-    env_vars = ['CUDA_PATH', 'CUDA_PATH_V12_1', 'PATH']
+    env_vars = ['CUDA_PATH', 'PATH']
 
     for env_var in env_vars:
         current_value = os.environ.get(env_var, '')
