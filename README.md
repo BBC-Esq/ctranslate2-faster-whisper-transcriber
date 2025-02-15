@@ -1,7 +1,7 @@
 # Record and Transcribe Audio Using Ctranslate2!
 1. Transcribe voice to clipbord.
 2. Paste into your favorite LLM.
-3. Save valuable time.
+3. Save time.
 
 ![image](https://github.com/user-attachments/assets/e6f0f8b3-42a3-45bf-82aa-02300d59f274)
 
