@@ -1,5 +1,6 @@
 # Record and Transcribe Audio Using Ctranslate2!
 Easily record audio to your system's clipboard so you can copy and paste it.
+![image](https://github.com/user-attachments/assets/e6f0f8b3-42a3-45bf-82aa-02300d59f274)
 
 ## Requirments
 1) [Python 3.11](https://www.python.org/downloads/release/python-3119/) or [Python 3.12](https://www.python.org/downloads/release/python-3129/)
