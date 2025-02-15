@@ -45,7 +45,6 @@ Start recording...speak...stop recording, then use ```control + v``` or right-cl
 
 # Creating an .exe file
 
-* ```pip install pyinstaller==6.11.1```
 * ```pyinstaller --onefile ct2_main.py```
 
 
