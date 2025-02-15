@@ -1,5 +1,5 @@
 # Record and Transcribe Audio Using Ctranslate2!
-Easily record audio to your system's clipboard so you can copy and paste it.
+Transcribe voice to clipbord.  Paste into your favorite LLM.  Save typing time.
 ![image](https://github.com/user-attachments/assets/e6f0f8b3-42a3-45bf-82aa-02300d59f274)
 
 ## Requirments
