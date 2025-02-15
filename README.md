@@ -44,7 +44,8 @@ Choose the Whisper model you want to use and click "Update Settings". The first 
 Start recording...speak...stop recording, then use ```control + v``` or right-click and "paste" the transcription into whatever program you want; for example, into the browser window for ChatGPT.<br><br>
 
 # Creating an .exe file
-
-* ```pyinstaller --onefile ct2_main.py```
+```
+pyinstaller --onefile ct2_main.py
+```
 
 
