@@ -3,6 +3,30 @@ import os
 from pathlib import Path
 import queue
 from contextlib import contextmanager
+import yaml
+import logging
+
+from ct2_utils import get_resource_path
+
+logger = logging.getLogger(__name__)
+
+def ensure_config_exists():
+    config_path = Path(get_resource_path("config.yaml"))
+    if not config_path.exists():
+        default_config = {
+            "device_type": "",
+            "model_name": "",
+            "quantization_type": "",
+            "supported_quantizations": {
+                "cpu": [],
+                "cuda": []
+            }
+        }
+        with open(config_path, "w") as f:
+            yaml.safe_dump(default_config, f)
+        logger.debug(f"Created default config file at: {config_path}")
+
+ensure_config_exists()
 
 def set_cuda_paths():
     venv_base = Path(sys.executable).parent.parent
@@ -28,10 +52,8 @@ if __name__ == "__main__":
     quantization_checker = CheckQuantizationSupport()
     cuda_available = quantization_checker.has_cuda_device()
     quantization_checker.update_supported_quantizations()
-
     app = QApplication(sys.argv)
     app.setStyle('Fusion')
     window = MyWindow(cuda_available)
     window.show()
-
     sys.exit(app.exec())

@@ -13,6 +13,8 @@ from contextlib import contextmanager
 from pathlib import Path
 import queue
 
+from ct2_utils import get_resource_path
+
 logger = logging.getLogger(__name__)
 
 class ModelLoaderThread(QThread):
@@ -148,7 +150,7 @@ class VoiceRecorder(QObject):
         self.load_settings()
 
     def load_settings(self):
-        config_path = Path("config.yaml")
+        config_path = Path(get_resource_path("config.yaml"))
         try:
             with config_path.open("r") as f:
                 config = yaml.safe_load(f)
@@ -161,12 +163,20 @@ class VoiceRecorder(QObject):
             self.update_model("base.en", "int8", "cpu")
 
     def save_settings(self, model_name, quantization_type, device_type):
-        config = {
+        config_path = Path(get_resource_path("config.yaml"))
+        try:
+            with config_path.open("r") as f:
+                config = yaml.safe_load(f) or {}
+        except FileNotFoundError:
+            config = {}
+
+        config.update({
             "model_name": model_name,
             "quantization_type": quantization_type,
             "device_type": device_type
-        }
-        config_path = Path("config.yaml")
+        })
+
+        logger.debug(f"Saving updated settings to config: {config}")
         with config_path.open("w") as f:
             yaml.safe_dump(config, f)
 

@@ -1,8 +1,9 @@
 from PySide6.QtWidgets import (QApplication, QWidget, QVBoxLayout, QPushButton, 
     QLabel, QComboBox, QHBoxLayout, QGroupBox, QTextEdit)
 from PySide6.QtCore import Qt
-from ct2_logic import VoiceRecorder
 import yaml
+from ct2_logic import VoiceRecorder
+from ct2_utils import get_resource_path
 
 class ClipboardWindow(QWidget):
     def __init__(self, main_window=None):
@@ -59,7 +60,7 @@ class MyWindow(QWidget):
         self.recorder = VoiceRecorder(self)
 
         try:
-            with open("config.yaml", "r") as f:
+            with open(get_resource_path("config.yaml"), "r") as f:
                 config = yaml.safe_load(f)
                 model = config.get("model_name", "base.en")
                 quantization = config.get("quantization_type", "int8")

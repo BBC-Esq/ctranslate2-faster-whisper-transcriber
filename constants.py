@@ -54,6 +54,7 @@ libs = [
     "protobuf==5.29.3",
     "psutil==6.1.1",
     "pycparser==2.22",
+    "pyinstaller==6.11.1",
     "pyreadline3==3.5.4",
     "PyYAML==6.0.2",
     "requests==2.32.3",
