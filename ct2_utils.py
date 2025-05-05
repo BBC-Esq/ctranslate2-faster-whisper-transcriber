@@ -41,15 +41,13 @@ class CheckQuantizationSupport:
 
     def _update_supported_quantizations_in_config(self, device, quantizations):
         config_path = get_resource_path("config.yaml")
-        # print(f"Looking for config at: {config_path}")
-        
+
         try:
             with open(config_path, "r") as f:
                 config = yaml.safe_load(f) or {}
-                # print(f"Loaded config: {config}")
         except FileNotFoundError:
             config = {}
-        
+
         if not isinstance(config, dict):
             config = {}
 
@@ -57,8 +55,6 @@ class CheckQuantizationSupport:
             config["supported_quantizations"] = {}
 
         config["supported_quantizations"][device] = quantizations
-        # print(f"Saving config to: {config_path}")
-        # print(f"With content: {config}")
 
         with open(config_path, "w") as f:
-            yaml.safe_dump(config, f, default_style="'")
+            yaml.safe_dump(config, f, sort_keys=False)

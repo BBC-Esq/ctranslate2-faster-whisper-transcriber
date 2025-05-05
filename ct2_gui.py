@@ -25,12 +25,12 @@ class ClipboardWindow(QWidget):
         self.text_display.setText(text)
 
     def update_history(self, text):
-        current_text = self.clipboard_history.toPlainText()
+        current_text = self.text_display.toPlainText()
         if current_text:
-            self.clipboard_history.setText(f"{text}\n\n{current_text}")
+            self.text_display.setText(f"{text}\n\n{current_text}")
         else:
-            self.clipboard_history.setText(text)
-            
+            self.text_display.setText(text)
+
     def showEvent(self, event):
         if self.main_window:
             main_geo = self.main_window.geometry()
