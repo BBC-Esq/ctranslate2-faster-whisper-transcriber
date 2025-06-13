@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import (QApplication, QWidget, QVBoxLayout, QPushButton, 
-    QLabel, QComboBox, QHBoxLayout, QGroupBox, QTextEdit)
+    QLabel, QComboBox, QHBoxLayout, QGroupBox, QTextEdit, QCheckBox)
 from PySide6.QtCore import Qt
 import yaml
 from ct2_logic import VoiceRecorder
@@ -78,6 +78,13 @@ class MyWindow(QWidget):
         self.stop_button.clicked.connect(self.recorder.stop_recording)
         layout.addWidget(self.stop_button)
 
+        self.curate_checkbox = QCheckBox("Curate Transcription", self)
+        self.curate_checkbox.setToolTip(
+            "Basic curation such as removing double blank lines, etc..\n"
+            "before copying/displaying."
+        )
+        layout.addWidget(self.curate_checkbox)
+
         settings_group = QGroupBox("Settings")
         settings_layout = QVBoxLayout()
 
@@ -119,7 +126,7 @@ class MyWindow(QWidget):
         settings_group.setLayout(settings_layout)
         layout.addWidget(settings_group)
 
-        self.setFixedSize(425, 250)
+        self.setFixedSize(425, 275)
         self.setWindowFlag(Qt.WindowStaysOnTopHint)
 
         self.device_dropdown.currentTextChanged.connect(self.update_quantization_options)
