@@ -3,7 +3,7 @@
 2. Paste into your favorite LLM.
 3. Save time.
 
-![image](https://github.com/user-attachments/assets/04d5f36c-11af-4247-8347-b51c17119aff)
+
 
 ## Requirments
 1) [Python 3.11](https://www.python.org/downloads/release/python-3119/) or [Python 3.12](https://www.python.org/downloads/release/python-31210/)
@@ -43,3 +43,5 @@ Choose the Whisper model you want to use and click "Update Settings". The first 
 ### Step 3
 Start recording...speak...stop recording, then use ```control + v``` or right-click and "paste" the transcription into whatever program you want; for example, into the browser window for ChatGPT.<br><br>
 
+![image](https://github.com/user-attachments/assets/04d5f36c-11af-4247-8347-b51c17119aff)
+* Not that the transcripton is automatically copied to the clipboard.  The "Copy to Clipboard" button allows you to edit the transcription and re-copy it.
