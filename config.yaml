@@ -1,6 +1,0 @@
-device_type: cpu
-model_name: small.en
-quantization_type: float32
-supported_quantizations:
-  cpu: []
-  cuda: []
